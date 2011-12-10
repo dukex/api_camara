@@ -1,12 +1,12 @@
 require 'rubygems'
-require 'sinatra/base'
+require 'bundler/setup'
+
+Bundler.require
+
 require 'open-uri'
-require 'nokogiri'
-require 'crack' # for xml and json
-require 'json'
+
 
 class CamaraApp < Sinatra::Base
-
   get '/deputados.:format'  do
     get_deputados(params[:format])
   end
