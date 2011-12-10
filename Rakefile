@@ -3,6 +3,8 @@ require 'bundler/setup'
 
 Bundler.require
 
+$:.unshift(File.expand_path(File.dirname(__FILE__)))
+
 require 'models'
 require 'open-uri'
 
