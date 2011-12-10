@@ -10,7 +10,8 @@ data = File.read("db/deputados.xml")
 Crack::XML.parse(data)["deputados"]["deputado"].each do |deputado|
   puts "deputado #{deputado["nome"]}"
 
-  Deputado.create :id => deputado["idParlamentar"],
+
+  Deputado.create :idParlamentar => deputado["idParlamentar"],
                   :nome => deputado["nome"],
                   :nomeParlamentar => deputado["nomeParlamentar"],
                   :sexo => deputado["sexo"],
