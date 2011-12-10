@@ -3,7 +3,6 @@ require 'bundler/setup'
 
 Bundler.require
 
-require 'open-uri'
 require 'models'
 
 

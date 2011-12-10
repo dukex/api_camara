@@ -5,9 +5,10 @@ gem 'json'
 gem 'data_mapper'
 gem 'dm-migrations'
 gem 'sinatra'
+gem 'crack'
+gem 'rake'
 
 group :development do
-  gem 'crack'
   gem 'dm-sqlite-adapter'
 end
 
