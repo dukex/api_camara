@@ -20,16 +20,17 @@ class CamaraApp < Sinatra::Base
   end
 
   def output(resource, format)
+    options = {:exclude => :id}
     case format
       when 'csv'
         content_type :csv
         resource.to_csv
       when 'xml'
         content_type :xml
-        resource.to_xml
+        resource.to_xml options
       else
         content_type :json
-        resource.to_json
+        resource.to_json options
     end
   end
 end
