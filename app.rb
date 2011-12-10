@@ -9,21 +9,28 @@ require 'models'
 
 class CamaraApp < Sinatra::Base
   get '/deputados.:format'  do
-    get_deputados(params[:format])
+    format = params.delete("format")
+    @deputados = Deputado.all(params)
+    output @deputados, format
   end
 
   get '/deputados/:id.:format' do
-    deputados = Nokogiri::XML get_deputados('xml')
+    format = params.delete("format")
+    @deputado = Deputado.first(:idParlamentar => params[:id])
+    output @deputado, format
   end
 
-  def get_deputados(format)
-    deputados = open("http://www.camara.gov.br/sitcamaraws/deputados.asmx/ObterDeputados", "User-Agent"=> "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_2) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.874.121 Safari/535.2").read
-    if format == "json"
-      content_type :json
-      ::JSON.generate Crack::XML.parse(deputados)
-    elsif format == "xml"
-      content_type :xml
-      deputados
+  def output(resource, format)
+    case format
+      when 'csv'
+        content_type :csv
+        resource.to_csv
+      when 'xml'
+        content_type :xml
+        resource.to_xml
+      else
+        content_type :json
+        resource.to_json
     end
   end
 end
