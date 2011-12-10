@@ -4,6 +4,7 @@ require 'bundler/setup'
 Bundler.require
 
 require 'open-uri'
+require 'models'
 
 
 class CamaraApp < Sinatra::Base
