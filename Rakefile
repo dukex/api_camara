@@ -28,6 +28,4 @@ task :deputados do
       :fone => deputado["fone"],
       :email => deputado["email"]
   end
-
-
 end

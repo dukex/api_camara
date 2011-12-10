@@ -12,7 +12,7 @@ class Deputado
   include DataMapper::Resource
 
   property :id,         Serial
-  property :idParlamentar,  Integer, :unique => true
+  property :idParlamentar,  Integer, :key => true
   property :nome,       String
   property :nomeParlamentar, String
   property :sexo, String
