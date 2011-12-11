@@ -7,6 +7,7 @@ gem 'dm-migrations'
 gem 'sinatra'
 gem 'crack'
 gem 'rake'
+gem 'sass'
 
 group :development do
   gem 'dm-sqlite-adapter'
