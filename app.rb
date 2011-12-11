@@ -19,6 +19,10 @@ class CamaraApp < Sinatra::Base
     output @deputado, format
   end
 
+  get '/assets/:asset.css' do
+    sass :"#{params[:asset]}"
+  end
+
   def output(resource, format)
     options = {:exclude => :id}
     case format
