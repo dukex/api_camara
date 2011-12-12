@@ -7,6 +7,11 @@ require 'models'
 
 
 class CamaraApp < Sinatra::Base
+  get '/' do
+    erb :doc
+  end
+
+
   get '/deputados.?:format?'  do
     format = params.delete("format")
     @deputados = Deputado.all(params)

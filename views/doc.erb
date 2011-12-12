@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <title>Câmara API</title>
+
+    <meta charset="utf-8">
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+
+    <link rel="stylesheet" href="/assets/documentation.css" media="screen" charset="utf-8">
+    <link rel="shortcut icon" href="favicon.ico">
+
+  </head>
+
+  <body>
+    <div id="container">
+
+      <header>
+        <h1 id=""> Câmara API</h1>
+      </header>
+
+      <section role="main">
+        <p> A <a href="http://www2.camara.gov.br/">Câmara dos Deputados</a> lançou no dia <time>7 de dezembro de 2011</time> o <a href="http://www2.camara.gov.br/transparencia/dados-abertos">Projeto Dados Abertos</a> permitido a reutilização dos dados disponíveis no portal da Câmara por qualquer interessado que deseje trabalhá-los. Nem todos os dados estão disponíveis ainda, mas existe planos para serem lançados em breve. A idéia dessa API, alternativa, é prover de uma forma mais "fácil" o acesso aos dados, NEM TODOS OS DADOS ESTÃO DISPONÍVEIS AQUI, alguns recursos sugiro que busquem na API original. Abaixo descrevo os dados que essa API expõe e quais e os motivos para se utilizar essa API com tais dados.</p>
+
+        <h2 id="deputados">Deputados <span class="label success">use</span></h2>
+        <p> Na API da Camara você pode fazer um <code>GET</code> ou <code>POST</code> em <code>http://www.camara.gov.br/sitcamaraws/deputados.asmx/ObterDeputados</code> o que te retorna, em xml, todos os deputados</p>
+
+        <p>Nessa API você tem uma flexibilidade maior, podendo filtrar os deputados e recebi isso em outros formatos. <em class="important">Caso nenhum formato seja definido a API automaticamente retorna os dados em JSON</em></p>
+        <h3> Buscar Deputados </h3>
+        </p>URL: <strong>http://camara.heroku.com/deputados.<code>(formato)</code>?<code>(filtros)</code></strong></p>
+        <h3 id="deputados_por_id"> Buscar Deputado (por ID Parmalentar) </h3>
+        <p> URL: <strong> http://camara.heroku.com/deputados/<code>(idParlamentar)</code>.<code>(formato)</code> </strong></p>
+
+        <h3 id="deputados_format"> Formatos </h3>
+        <p> Os formato podem ser: </p>
+        <ul>
+          <li><strong>JSON</strong> (default)</li>
+          <li><strong>XML</strong></li>
+          <li><strong>CSV</strong></li>
+        </ul>
+        <h3 id="deputados_filter"> Filtros </h3>
+        <div class="alert-message warning">
+          <p><strong>Atenção!</strong> Infelizmente os valores dos filtros diferencia minúsculo de maiúsculo, então, </strong>ALGUNS</strong> VALORES DEVEM ESTAR EM MAIÚSCULO. </p>
+        </div>
+        <ul>
+          <li> <strong>idParlamentar</strong>: <span class="label important"><a href="#deputados_por_id">use busca por ID</a></span> se for usar esse parametro, talvez seja melhor buscar na url de busca de deputado</li>
+          <li> <strong>nome</strong>: <span class="label important"><a href="#deputados_por_id">use busca por ID</a></span> não é eficiente buscar por nome, nem  mesmo funciona como deveria</li>
+              <li> <strong>nomeParlamentar</strong>: <span class="label important"><a href="#deputados_por_id">use busca por ID</a></span>  não é eficiente buscar por nome, nem mesmo funciona como deveria</li>
+          <li> <strong>sexo</strong>: masculino ou feminino</li>
+          <li> <strong>uf</strong>: sigla do estato em maiúsculo </li>
+          <li> <strong>partido</strong>: sigla do partido, em maiúsculo, exteco <em>PCdoB</em> </li>
+          <li> <strong>gabinete</strong>: número do cabinete </li>
+          <li> <strong>anexo</strong>: número do anexo </li>
+          <li> <strong>fone</strong>: número de telefone, formato: xxxx-xxxx </li>
+          <li> <strong>email</strong>: <span class="label important"><a href="#deputados_por_id">use busca por ID</a></span> email do deputado</li>
+        </ul>
+        <h3> Exemplos </h3>
+        <ul>
+          <li> <code>http://camara.heroku.com/deputados.xml?uf=BA</code> Busca todos os deputados da Bahia em xml  </li>
+          <li> <code>http://camara.heroku.com/deputados.cvs?partido=PT</code> Busca todos os deputados do PT em cvs  </li>
+          <li> <code>http://camara.heroku.com/deputados.xml?sexo=feminino&uf=SP</code> Busca todos os deputados do sexo feminino de SP em xml </li>
+          <li> <code>http://camara.heroku.com/deputados.json?sexo=feminino&uf=SP&partido=PT</code> Busca todos os deputados do sexo feminino de SP do PT em json  </li>
+          <li> <code>http://camara.heroku.com/deputados?uf=MG</code> Busca todos os deputados de Minas Gerais em json </li>
+          <li> <code>http://camara.heroku.com/deputados/313.json</code> Busca deputado com idParlamentar igual 313</li>
+        </ul>
+
+      </section>
+
+      <footer>
+      </footer>
+    </div>
+  </body>
+</html>
